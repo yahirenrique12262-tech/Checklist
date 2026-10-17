@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checklist - Puerto Madero, Playa San Benito</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- FontAwesome para Íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Librería XLSX para generar archivos de Excel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Encabezado Principal -->
+        <header class="app-header">
+            <div class="header-titles">
+                <h1>Puerto Madero, Playa San Benito</h1>
+                <p>Evaluación Cualitativa de Condiciones de Campo</p>
+            </div>
+            <button id="btn-exportar" class="btn btn-excel">
+                <i class="fa-solid fa-file-excel"></i> Guardar y Descargar Excel (.xlsx)
+            </button>
+        </header>
+
+        <!-- Panel de Datos Generales -->
+        <section class="card general-data">
+            <div class="input-group">
+                <label for="fecha"><i class="fa-regular fa-calendar"></i> Fecha:</label>
+                <input type="date" id="fecha">
+            </div>
+            <div class="input-group">
+                <label for="lugar"><i class="fa-solid fa-location-dot"></i> Lugar:</label>
+                <select id="lugar">
+                    <option value="Hotel">Hotel</option>
+                    <option value="Restaurante">Restaurante</option>
+                    <option value="Palapa">Palapa</option>
+                    <option value="Espacio público">Espacio público</option>
+                    <option value="Malecón / Muelle">Malecón / Muelle</option>
+                    <option value="Mercado de artesanías / Mariscos">Mercado de artesanías / Mariscos</option>
+                    <option value="Zona de playa / Dunas">Zona de playa / Dunas</option>
+                    <option value="Estacionamiento público">Estacionamiento público</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Contenido Dividido -->
+        <div class="main-layout">
+            <!-- Sección Izquierda: Checklist -->
+            <main class="card checklist-section">
+                <h2>Evaluación de Aspectos Turísticos</h2>
+                <div class="checklist-table-header">
+                    <span>Aspecto / Pregunta</span>
+                    <span>Evaluación</span>
+                    <span>Observaciones Manuales</span>
+                </div>
+                <div id="checklist-container" class="checklist-items">
+                    <!-- Las preguntas se cargarán dinámicamente con JavaScript -->
+                </div>
+            </main>
+
+            <!-- Sección Derecha: Resumen y Lista de Guardados -->
+            <aside class="sidebar-section">
+                <!-- Porcentaje de Cumplimiento -->
+                <div class="card progress-card">
+                    <h3>Porcentaje de Cumplimiento</h3>
+                    <div id="porcentaje-texto" class="porcentaje-val">0.0%</div>
+                    <div class="progress-bar-bg">
+                        <div id="progress-bar-fill" class="progress-bar-fill"></div>
+                    </div>
+                    <button id="btn-agregar" class="btn btn-add">
+                        <i class="fa-solid fa-plus"></i> Agregar a la Lista
+                    </button>
+                </div>
+
+                <!-- Lista de Evaluaciones Guardadas -->
+                <div class="card saved-card">
+                    <h3>Lugares Evaluados</h3>
+                    <div id="lista-guardados" class="saved-list">
+                        <p class="empty-msg">No hay evaluaciones guardadas aún.</p>
+                    </div>
+                    <div class="actions-panel">
+                        <button id="btn-borrar" class="btn btn-danger">
+                            <i class="fa-solid fa-trash"></i> Borrar Último
+                        </button>
+                        <button id="btn-rehacer" class="btn btn-success hidden">
+                            <i class="fa-solid fa-rotate-left"></i> Volver a Agregar
+                        </button>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Modal Emergente para "Ver Más" -->
+    <div id="modal-detalle" class="modal hidden">
+        <div class="modal-content card">
+            <div class="modal-header">
+                <h3 id="modal-titulo">Detalles de Evaluación</h3>
+                <span id="close-modal" class="close-btn">&times;</span>
+            </div>
+            <div id="modal-body" class="modal-body">
+                <!-- Se llena dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
